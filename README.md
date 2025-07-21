@@ -99,7 +99,7 @@ wget -qO- https://raw.githubusercontent.com/No1really/OneClick-For-Linux/refs/he
 
 ### Manual Install via Git
 ```bash
-git clone https://github.com/<your-username>/oneclick-linux-updater.git
+git clone [https://github.com/<your-username>/oneclick-linux-updater.git](https://github.com/No1really/OneClick-For-Linux.git)
 cd oneclick-linux-updater
 bash oneclick_installer.sh
 ```
