@@ -108,15 +108,19 @@ bash oneclick_installer.sh
 
 ## ✅ Post-Install Steps
 
-1. **Restart GNOME Shell**  
+1. **Restart GNOME Shell**
+   a.Shortcut (For X11) :
+   
    ```bash
    Alt + F2, then type: r
-   ```  
+   ```
 
-2. **Enable the Extension**  
+   b. Log back in if on Wayland.
+
+3. **Enable the Extension**  
    Open **GNOME Extensions** → Toggle *OneClick for Linux*.  
 
-3. **Configure Settings**  
+4. **Configure Settings**  
    Open the extension’s settings dialog and adjust behavior as needed.  
 
 ---
@@ -130,24 +134,6 @@ bash oneclick_installer.sh
 - Clicking it shows update details and lets you:
   - Run **Security**, **Essential**, **Optional**, or **Full** updates  
 - Updates execute in a **Kitty (or preferred) terminal** with a Pac-Man progress animation  
-
----
-
-## 📂 Repo Structure
-
-```
-oneclick-linux-updater/
-├── README.md                # This file
-├── oneclick_installer.sh    # Self-contained installer
-├── LICENSE                  # License file
-└── CONTRIBUTING.md          # Guidelines for contributors
-```
-
-Generated files are placed inside:
-
-```
-~/.local/share/gnome-shell/extensions/oneclick-linux@local/
-```
 
 ---
 
