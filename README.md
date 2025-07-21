@@ -109,6 +109,7 @@ bash oneclick_installer.sh
 ## ✅ Post-Install Steps
 
 1. **Restart GNOME Shell**
+
    a.Shortcut (For X11) :
    
    ```bash
