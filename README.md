@@ -110,7 +110,7 @@ bash oneclick_installer.sh
 
 1. **Restart GNOME Shell**
 
-   a.Shortcut (For X11) :
+   a. Shortcut (For X11):
    
    ```bash
    Alt + F2, then type: r
