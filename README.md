@@ -15,7 +15,6 @@ Currently optimized for **Arch Linux**, it provides a **top-bar updater icon** t
 - Displays notifications when updates are available  
 
 ✅ **Custom Update Modes**  
-- **Security-only updates** (minimal risk)  
 - **Essential updates** (core system & libraries)  
 - **Optional updates** (apps, utilities)  
 - **Full system update** (everything + Flatpaks)  
