@@ -85,16 +85,16 @@ Currently optimized for **Arch Linux**, it provides a **top-bar updater icon** t
 
 ---
 
-## 🚀 Installation
+## 🚀 Installation (Arch Only for Now)
 
 ### Quick Install via `curl`
 ```bash
-curl -fsSL https://raw.githubusercontent.com/<your-username>/oneclick-linux-updater/main/oneclick_installer.sh | bash
+curl -fsSL https://raw.githubusercontent.com/No1really/OneClick-For-Linux/refs/heads/main/OneClick.sh | bash
 ```
 
 ### Quick Install via `wget`
 ```bash
-wget -qO- https://raw.githubusercontent.com/<your-username>/oneclick-linux-updater/main/oneclick_installer.sh | bash
+wget -qO- https://raw.githubusercontent.com/No1really/OneClick-For-Linux/refs/heads/main/OneClick.sh | bash
 ```
 
 ### Manual Install via Git
@@ -186,10 +186,6 @@ Bug reports & feature requests:
 [GitHub Issues](https://github.com/<your-username>/oneclick-linux-updater/issues)
 
 ---
-
-## 📜 License
-
-Licensed under **MIT License** (or GPLv3 – choose one).
 
 ---
 
