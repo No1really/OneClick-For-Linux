@@ -173,7 +173,7 @@ gsettings reset-recursively org.gnome.shell.extensions.oneclick-linux || true
 Want to add Fedora or Debian support?  
 
 ```bash
-git fork https://github.com/<your-username>/oneclick-linux-updater.git
+git fork https://github.com/No1really/OneClick-For-Linux.git
 git checkout -b feature/new-distro-support
 # make your changes
 git commit -m "Add Fedora/Debian support"
