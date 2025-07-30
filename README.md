@@ -1,61 +1,53 @@
 <div align="center">
   <h1>Kō</h1>
-  <p>Arch Linux Enthusiast • Music Producer • Marketer</p>
-  <h2>Minimal. Crafted. Honest.</h2>
+  <p>Minimalist • Perfectionist • Sonic Visionary</p>
 </div>
 
 ---
 
-## 🖤 About Me
+## 🌿 Who I Am
 
-I live in the terminal.  
-I engineer sound, automate systems, and connect products to people—**without fluff**.  
-I believe in the **raw power of minimalism** and the **craft of curation**.  
-Every line of code, every sound preset, every interface is tuned by hand—never by trend.
-
----
-
-## 🚀 My Digital Workbench
-
-| **Project**                        | **Purpose**                                               | **Link** |
-|-------------------------------------|-----------------------------------------------------------|----------|
-| **OneClick for Linux**             | GNOME Shell updater for Arch Linux—minimal, zero-fuss     | [View on GitHub](https://github.com/No1really/OneClick-For-Linux) |
-| **Kō’s Soundpack (EasyEffects)**   | Audiophile Linux presets—flat, spatial, bass-heavy        | [View on GitHub](https://github.com/No1really/Custom-Easyeffects-Presets) |
+- I see beauty in **restraint**—every element earns its place.  
+- I’m driven by **precision** in everything I touch.  
+- I find inspiration in **contrast**—silence vs. noise, dark vs. light.  
+- I craft experiences that feel **intimate**, even when they’re digital.  
+- I believe **less is powerful** when it’s done right.
 
 ---
 
-## 🎯 Mission
+## ✨ My Ethos
 
-- **Shape sound**: Make every note count—less noise, more signal.
-- **Optimize systems**: Build tools that work quietly and reliably.
-- **Connect ideas**: Use honest marketing and minimal design to create real experiences.
+> “Perfection isn’t about adding more,  
+> it’s about removing the unnecessary.”
 
-**Real minimalism isn’t about less—it’s about the right things, doing exactly what they should, without interference.**
-
----
-
-## 🧑‍💻 What I’m Into
-
-- **Arch Linux** (btw)
-- **Sound engineering**: Presets, plugins, workflows
-- **Automation**: Scripts that make life quieter, not louder
-- **Open source**: Tools and communities that empower
-- **Minimalism**: Less is more, but better
-- **Perfectionism**: The detail in detail
+- **Intentional Choices:** Every detail matters.  
+- **Quiet Mastery:** True skill is felt, not announced.  
+- **Human Touch:** Even technology deserves a heartbeat.  
+- **Timeless Style:** Trends fade; fundamentals endure.
 
 ---
 
-## ☕ Connect
+## 🔮 My Signature
 
-- **GitHub**: [@No1really](https://github.com/No1really)
-- **Open to collaboration**—code, sound, and ideas welcome.
-- **No social media fluff**: Real work, real quality, no hype.
+| Trait            | How It Shows                                      |
+|------------------|---------------------------------------------------|
+| **Minimalism**   | Clean lines, open space, deliberate simplicity    |
+| **Perfection**   | Hand-finished work, refined until it feels right  |
+| **Innovation**   | Turning ideas into fresh perspectives             |
+| **Empathy**      | Anticipating needs with thoughtful design         |
+
+---
+
+## 🌌 My Canvas
+
+- **Silence** is my baseline.  
+- **Sound** is my palette.  
+- **Aesthetic** is my form.  
 
 ---
 
 <div align="center">
   <sub>
-    <b>🖤 Minimal. Focused. Relentless.</b><br>
-    <i>Because depth doesn’t need decoration.</i>
+    <b>🖤 Kō’s Creed:</b> Craft with care. Refine with rigor. Release with confidence.
   </sub>
 </div>
