@@ -1,195 +1,61 @@
-# OneClick for Linux – GNOME Extension
-
-**OneClick for Linux** is a GNOME Shell extension that makes updating your Linux system effortless.  
-Currently optimized for **Arch Linux**, it provides a **top-bar updater icon** that monitors for available updates, notifies you, and lets you perform **one-click updates** with a **Pac-Man-themed progress bar**.
-
-**Future releases will add support for Fedora, Debian, and other major distros.**
-
----
-
-## ✨ Features
-
-✅ **Background Update Checks**  
-- Actively monitors available updates for Arch Linux  
-- Detects Flatpak updates via `flatpak remote-ls --updates`  
-- Displays notifications when updates are available  
-
-✅ **Custom Update Modes**  
-- **Essential updates** (core system & libraries)  
-- **Optional updates** (apps, utilities)  
-- **Full system update** (everything + Flatpaks)  
-
-✅ **Reflector & Mirror Control (Arch)**  
-- Run Reflector before updates  
-- Configure mirror **protocol**, **sort order**, **country**, and **latest count**  
-
-✅ **Package Manager Behavior Control**  
-- Adjust **parallel downloads**  
-- Enable/disable **colored output**  
-- Enable/disable **space checking**  
-- Toggle **verbose mode**  
-
-✅ **Self-contained Installer**  
-- Dynamically generates the GNOME extension (`metadata.json`, `extension.js`, schemas, icons)  
-- Installs required dependencies if missing  
-
-✅ **Fun Pac-Man Progress Bar**  
-- Watch a Pac-Man animation while updates run in the terminal  
+<div align="center">
+  <h1>Kō</h1>
+  <p>Arch Linux Enthusiast • Music Producer • Marketer</p>
+  <h2>Minimal. Crafted. Honest.</h2>
+</div>
 
 ---
 
-## 🛠 Current Requirements
+## 🖤 About Me
 
-- Arch Linux or an Arch-based distro  
-- GNOME Shell **42–48**  
-- `pacman` + `pacman-contrib` (for `checkupdates`)  
-- `flatpak` (optional, for Flatpak support)  
-- `reflector` (optional, for mirror updates)  
-- `curl` or `wget` for installation  
+I live in the terminal.  
+I engineer sound, automate systems, and connect products to people—**without fluff**.  
+I believe in the **raw power of minimalism** and the **craft of curation**.  
+Every line of code, every sound preset, every interface is tuned by hand—never by trend.
 
 ---
 
-## 🚀 Future Plans
+## 🚀 My Digital Workbench
 
-- **Fedora support** (DNF update checks, mirror refresh)  
-- **Debian/Ubuntu support** (`apt` integration with security/essential/optional categories)  
-- Unified updater logic for multiple distros  
-
----
-
-## 🔧 Available Options in Settings
-
-### Update Modes
-- **Security Updates** – Only critical security patches  
-- **Essential Updates** – Core components & system libraries  
-- **Optional Updates** – User apps, utilities  
-- **Full Updates** – Everything including Flatpaks  
-
-### Flatpak Support
-- Toggle Flatpak update detection  
-
-### Reflector & Mirrors (Arch-specific)
-- Run Reflector before updates  
-- Configure:
-  - Mirror protocol (`https`, `http`)
-  - Sorting (`rate`, `score`, `age`)
-  - Latest mirrors count
-  - Preferred country  
-
-### Package Manager Configuration
-- Parallel Downloads (e.g. `5`, `10`)  
-- Colored Pacman Output toggle  
-- Verbose Mode toggle  
-- Space Checking toggle  
+| **Project**                        | **Purpose**                                               | **Link** |
+|-------------------------------------|-----------------------------------------------------------|----------|
+| **OneClick for Linux**             | GNOME Shell updater for Arch Linux—minimal, zero-fuss     | [View on GitHub](https://github.com/No1really/OneClick-For-Linux) |
+| **Kō’s Soundpack (EasyEffects)**   | Audiophile Linux presets—flat, spatial, bass-heavy        | [View on GitHub](https://github.com/No1really/Custom-Easyeffects-Presets) |
 
 ---
 
-## 🚀 Installation (Arch Only for Now)
+## 🎯 Mission
 
-### Quick Install via `curl`
-```bash
-curl -fsSL https://raw.githubusercontent.com/No1really/OneClick-For-Linux/refs/heads/main/OneClick.sh | bash
-```
+- **Shape sound**: Make every note count—less noise, more signal.
+- **Optimize systems**: Build tools that work quietly and reliably.
+- **Connect ideas**: Use honest marketing and minimal design to create real experiences.
 
-### Quick Install via `wget`
-```bash
-wget -qO- https://raw.githubusercontent.com/No1really/OneClick-For-Linux/refs/heads/main/OneClick.sh | bash
-```
-
-### Manual Install via Git
-```bash
-git clone https://github.com/No1really/OneClick-For-Linux.git
-cd OneClick-For-Linux
-chmod +rwx OneClick.sh 
-bash OneClick.sh
-```
+**Real minimalism isn’t about less—it’s about the right things, doing exactly what they should, without interference.**
 
 ---
 
-## ✅ Post-Install Steps
+## 🧑‍💻 What I’m Into
 
-1. **Restart GNOME Shell**
-
-   a. Shortcut (For X11):
-   
-   ```bash
-   Alt + F2, then type: r
-   ```
-
-   b. Log back in if on Wayland.
-
-3. **Enable the Extension**  
-   Open **GNOME Extensions** → Toggle *OneClick for Linux*.  
-
-4. **Configure Settings**  
-   Open the extension’s settings dialog and adjust behavior as needed.  
+- **Arch Linux** (btw)
+- **Sound engineering**: Presets, plugins, workflows
+- **Automation**: Scripts that make life quieter, not louder
+- **Open source**: Tools and communities that empower
+- **Minimalism**: Less is more, but better
+- **Perfectionism**: The detail in detail
 
 ---
 
-## 🔄 How It Works
+## ☕ Connect
 
-- A background loop runs:
-  - `checkupdates` for Arch repo updates (Fedora/Debian support coming soon)  
-  - `flatpak remote-ls --updates` for Flatpak updates  
-- The **top-bar icon** reflects available updates  
-- Clicking it shows update details and lets you:
-  - Run **Security**, **Essential**, **Optional**, or **Full** updates  
-- Updates execute in a **Kitty (or preferred) terminal** with a Pac-Man progress animation  
+- **GitHub**: [@No1really](https://github.com/No1really)
+- **Open to collaboration**—code, sound, and ideas welcome.
+- **No social media fluff**: Real work, real quality, no hype.
 
 ---
 
-## 🖥️ Removal Process
-
-To remove OneClick for Linux completely:
-```bash
-rm -rf ~/.local/share/gnome-shell/extensions/oneclick-linux@local
-```
-
-Then restart GNOME Shell:
-```bash
-Alt + F2, then type: r
-```
-
-If you also want to remove related GNOME settings:
-```bash
-gsettings reset-recursively org.gnome.shell.extensions.oneclick-linux || true
-```
-
----
-
-## 🏗 Roadmap
-
-- ✅ Arch Linux support  
-- ⏳ Fedora support (DNF integration)  
-- ⏳ Debian/Ubuntu support (APT integration)  
-- [ ] Configurable update check intervals  
-- [ ] Notification snooze option  
-- [ ] GUI for update history  
-
----
-
-## 🤝 Contributing
-
-Want to add Fedora or Debian support?  
-
-```bash
-git fork https://github.com/No1really/OneClick-For-Linux.git
-git checkout -b feature/new-distro-support
-# make your changes
-git commit -m "Add Fedora/Debian support"
-git push origin feature/new-distro-support
-```
-
-Then open a Pull Request.  
-
-Bug reports & feature requests:  
-[GitHub Issues](https://github.com/<your-username>/oneclick-linux-updater/issues)
-
----
-
----
-
-## ❤️ Credits
-
-- Built for Linux users who love **less typing, more clicking**  
-- Currently Arch-focused but designed to scale to Fedora & Debian  
+<div align="center">
+  <sub>
+    <b>🖤 Minimal. Focused. Relentless.</b><br>
+    <i>Because depth doesn’t need decoration.</i>
+  </sub>
+</div>
