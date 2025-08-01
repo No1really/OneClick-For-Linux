@@ -2,7 +2,7 @@
 
 # ============== OneClick System Maintenance Module ==============
 # Pac-Man themed system maintenance with consistent styling - FIXED VERSION
-# Author: OCD Arch User (Kolkata, India)
+# Author: No1Really
 
 # Box styling configuration
 box_width=66
