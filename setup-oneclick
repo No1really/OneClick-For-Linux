@@ -3,7 +3,7 @@
 # =====================================================================
 # 🟡 ONECLICK CLI SETUP SCRIPT 🟡
 # Setup and Installation for OneClick CLI System
-# OCD Arch User (Kolkata, India)
+# No1Really
 # =====================================================================
 
 # Colors and styling
@@ -52,9 +52,9 @@ show_banner() {
     echo -e "${YELLOW}"
     center_box "$box_width" "╔══════════════════════════════════════════════════════════════╗"
     center_box "$box_width" "║                                                              ║"
-    center_box "$box_width" "║        🟡 OneClick CLI Setup & Installation 🟡              ║"
+    center_box "$box_width" "║         🟡 OneClick CLI Setup & Installation 🟡              ║"
     center_box "$box_width" "║                                                              ║"
-    center_box "$box_width" "║           Pac-Man Edition System Installer                  ║"
+    center_box "$box_width" "║             Pac-Man Edition System Installer                 ║"
     center_box "$box_width" "║                                                              ║"
     center_box "$box_width" "╚══════════════════════════════════════════════════════════════╝"
     echo -e "${NC}"
@@ -313,7 +313,7 @@ center_box() {
 ${module_name}_main() {
     clear
     center_box "\$box_width" "╔══════════════════════════════════════════════════════════════╗"
-    center_box "\$box_width" "║                ${module_icon} ${module_title} ${module_icon}                ║"
+    center_box "\$box_width" "║          ${module_icon} ${module_title} ${module_icon}       ║"
     center_box "\$box_width" "╚══════════════════════════════════════════════════════════════╝"
     echo
     
@@ -416,7 +416,7 @@ show_completion() {
     echo -e "${GREEN}"
     center_box "$box_width" "╔══════════════════════════════════════════════════════════════╗"
     center_box "$box_width" "║                                                              ║"
-    center_box "$box_width" "║        🎉 INSTALLATION COMPLETED SUCCESSFULLY! 🎉           ║"
+    center_box "$box_width" "║         🎉 INSTALLATION COMPLETED SUCCESSFULLY! 🎉           ║"
     center_box "$box_width" "║                                                              ║"
     center_box "$box_width" "╚══════════════════════════════════════════════════════════════╝"
     echo -e "${NC}"
