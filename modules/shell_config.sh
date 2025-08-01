@@ -22,7 +22,7 @@ center_box() {
 shell_header=(
     "╔══════════════════════════════════════════════════════════════╗"
     "║                🐚 SHELL CONFIGURATION 🐚                     ║"
-    "║                  Power-Up Your Shell!                       ║"
+    "║                  Power-Up Your Shell!                        ║"
     "╚══════════════════════════════════════════════════════════════╝"
 )
 
@@ -31,17 +31,17 @@ shell_menu=(
     "║                     SHELL OPTIONS                            ║"
     "╠══════════════════════════════════════════════════════════════╣"
     "║                                                              ║"
-    "║       🟡  1. Install/Setup Zsh + Oh My Zsh   🍒             ║"
+    "║       🟡  1. Install/Setup Zsh + Oh My Zsh   🍒              ║"
     "║                                                              ║"
-    "║       🟡  2. Configure Bash with Enhancements 🟡            ║"
+    "║       🟡  2. Configure Bash with Enhancements 🟡             ║"
     "║                                                              ║"
-    "║       👻  3. Install Fish Shell              🍒             ║"
+    "║       👻  3. Install Fish Shell              🍒              ║"
     "║                                                              ║"
-    "║       👻  4. Setup Shell Aliases & Functions 🟡             ║"
+    "║       👻  4. Setup Shell Aliases & Functions 🟡              ║"
     "║                                                              ║"
-    "║       🟡  5. Install Powerline/Starship      👻             ║"
+    "║       🟡  5. Install Powerline/Starship      👻              ║"
     "║                                                              ║"
-    "║       🍒  6. Return to Main Menu             🟡             ║"
+    "║       🍒  6. Return to Main Menu             🟡              ║"
     "║                                                              ║"
     "╚══════════════════════════════════════════════════════════════╝"
 )
@@ -70,7 +70,7 @@ show_shell_animation() {
 install_zsh_setup() {
     clear
     center_box "$box_width" "╔══════════════════════════════════════════════════════════════╗"
-    center_box "$box_width" "║                  ZSH INSTALLATION                           ║"
+    center_box "$box_width" "║                  ZSH INSTALLATION                            ║"
     center_box "$box_width" "╚══════════════════════════════════════════════════════════════╝"
     echo
     
@@ -231,7 +231,7 @@ EOF
 configure_bash() {
     clear
     center_box "$box_width" "╔══════════════════════════════════════════════════════════════╗"
-    center_box "$box_width" "║                 BASH ENHANCEMENT                            ║"
+    center_box "$box_width" "║                 BASH ENHANCEMENT                             ║"
     center_box "$box_width" "╚══════════════════════════════════════════════════════════════╝"
     echo
     
@@ -341,7 +341,7 @@ EOF
 install_fish_shell() {
     clear
     center_box "$box_width" "╔══════════════════════════════════════════════════════════════╗"
-    center_box "$box_width" "║                  FISH SHELL SETUP                           ║"
+    center_box "$box_width" "║                  FISH SHELL SETUP                            ║"
     center_box "$box_width" "╚══════════════════════════════════════════════════════════════╝"
     echo
     
@@ -420,7 +420,7 @@ EOF
 setup_aliases_functions() {
     clear
     center_box "$box_width" "╔══════════════════════════════════════════════════════════════╗"
-    center_box "$box_width" "║              ALIASES & FUNCTIONS SETUP                      ║"
+    center_box "$box_width" "║              ALIASES & FUNCTIONS SETUP                       ║"
     center_box "$box_width" "╚══════════════════════════════════════════════════════════════╝"
     echo
     
@@ -590,7 +590,7 @@ EOF
 install_powerline_starship() {
     clear
     center_box "$box_width" "╔══════════════════════════════════════════════════════════════╗"
-    center_box "$box_width" "║              POWERLINE/STARSHIP SETUP                       ║"
+    center_box "$box_width" "║              POWERLINE/STARSHIP SETUP                        ║"
     center_box "$box_width" "╚══════════════════════════════════════════════════════════════╝"
     echo
     
