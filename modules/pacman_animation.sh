@@ -2,7 +2,7 @@
 
 # ============== OneClick Pac-Man Animation Module ==============
 # Interactive Pac-Man game with full controls - FIXED VERSION
-# Author: OCD Arch User (Kolkata, India)
+# Author: No1Really
 
 # Box styling configuration
 box_width=66
