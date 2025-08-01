@@ -22,7 +22,7 @@ center_box() {
 config_header=(
     "╔══════════════════════════════════════════════════════════════╗"
     "║                ⚙️  SYSTEM CONFIGURATION ⚙️                   ║"
-    "║                   Tune Your System!                         ║"
+    "║                   Tune Your System!                          ║"
     "╚══════════════════════════════════════════════════════════════╝"
 )
 
@@ -31,19 +31,19 @@ config_menu=(
     "║                   CONFIGURATION OPTIONS                      ║"
     "╠══════════════════════════════════════════════════════════════╣"
     "║                                                              ║"
-    "║       🟡  1. Pacman Configuration & Mirrors  🍒             ║"
+    "║       🟡  1. Pacman Configuration & Mirrors  🍒              ║"
     "║                                                              ║"
-    "║       🟡  2. Install/Configure AUR Helper    🟡             ║"
+    "║       🟡  2. Install/Configure AUR Helper    🟡              ║"
     "║                                                              ║"
-    "║       👻  3. Network Configuration           🍒             ║"
+    "║       👻  3. Network Configuration           🍒              ║"
     "║                                                              ║"
-    "║       👻  4. Audio System (PulseAudio/Pipewire) 🟡         ║"
+    "║       👻  4. Audio System (PulseAudio/Pipewire) 🟡           ║"
     "║                                                              ║"
-    "║       🟡  5. System Services Management      👻             ║"
+    "║       🟡  5. System Services Management      👻              ║"
     "║                                                              ║"
-    "║       🟡  6. Performance Tuning             🍒             ║"
+    "║       🟡  6. Performance Tuning             🍒               ║"
     "║                                                              ║"
-    "║       🍒  7. Return to Main Menu            🟡             ║"
+    "║       🍒  7. Return to Main Menu            🟡               ║"
     "║                                                              ║"
     "╚══════════════════════════════════════════════════════════════╝"
 )
@@ -72,7 +72,7 @@ show_config_animation() {
 configure_pacman() {
     clear
     center_box "$box_width" "╔══════════════════════════════════════════════════════════════╗"
-    center_box "$box_width" "║                 PACMAN CONFIGURATION                        ║"
+    center_box "$box_width" "║                 PACMAN CONFIGURATION                         ║"
     center_box "$box_width" "╚══════════════════════════════════════════════════════════════╝"
     echo
     
@@ -149,7 +149,7 @@ configure_pacman() {
 configure_aur_helper() {
     clear
     center_box "$box_width" "╔══════════════════════════════════════════════════════════════╗"
-    center_box "$box_width" "║                   AUR HELPER SETUP                          ║"
+    center_box "$box_width" "║                   AUR HELPER SETUP                           ║"
     center_box "$box_width" "╚══════════════════════════════════════════════════════════════╝"
     echo
     
@@ -263,7 +263,7 @@ EOF
 configure_network() {
     clear
     center_box "$box_width" "╔══════════════════════════════════════════════════════════════╗"
-    center_box "$box_width" "║                NETWORK CONFIGURATION                        ║"
+    center_box "$box_width" "║                NETWORK CONFIGURATION                         ║"
     center_box "$box_width" "╚══════════════════════════════════════════════════════════════╝"
     echo
     
@@ -341,7 +341,7 @@ configure_network() {
 configure_audio() {
     clear
     center_box "$box_width" "╔══════════════════════════════════════════════════════════════╗"
-    center_box "$box_width" "║                 AUDIO CONFIGURATION                         ║"
+    center_box "$box_width" "║                 AUDIO CONFIGURATION                          ║"
     center_box "$box_width" "╚══════════════════════════════════════════════════════════════╝"
     echo
     
@@ -411,7 +411,7 @@ configure_audio() {
 manage_services() {
     clear
     center_box "$box_width" "╔══════════════════════════════════════════════════════════════╗"
-    center_box "$box_width" "║                 SERVICES MANAGEMENT                         ║"
+    center_box "$box_width" "║                 SERVICES MANAGEMENT                          ║"
     center_box "$box_width" "╚══════════════════════════════════════════════════════════════╝"
     echo
     
@@ -470,7 +470,7 @@ manage_services() {
 performance_tuning() {
     clear
     center_box "$box_width" "╔══════════════════════════════════════════════════════════════╗"
-    center_box "$box_width" "║                PERFORMANCE TUNING                           ║"
+    center_box "$box_width" "║                PERFORMANCE TUNING                            ║"
     center_box "$box_width" "╚══════════════════════════════════════════════════════════════╝"
     echo
     
