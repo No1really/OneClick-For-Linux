@@ -22,7 +22,7 @@ center_box() {
 maintenance_header=(
     "╔══════════════════════════════════════════════════════════════╗"
     "║                🧹 SYSTEM MAINTENANCE 🧹                      ║"
-    "║                 Keep Your System Clean!                     ║"
+    "║                 Keep Your System Clean!                      ║"
     "╚══════════════════════════════════════════════════════════════╝"
 )
 
@@ -33,7 +33,7 @@ maintenance_menu=(
     "║                                                              ║"
     "║       🟡  1. Quick System Cleanup        🍒                  ║"
     "║                                                              ║"
-    "║       🟡  2. Package Cache Management     🟡                  ║"
+    "║       🟡  2. Package Cache Management     🟡                 ║"
     "║                                                              ║"
     "║       👻  3. Orphaned Packages Removal   🍒                  ║"
     "║                                                              ║"
@@ -43,7 +43,7 @@ maintenance_menu=(
     "║                                                              ║"
     "║       🟡  6. System Health Check         🍒                  ║"
     "║                                                              ║"
-    "║       🟡  7. Complete System Maintenance  🟡                  ║"
+    "║       🟡  7. Complete System Maintenance  🟡                 ║"
     "║                                                              ║"
     "║       🍒  8. Return to Main Menu         👻                  ║"
     "║                                                              ║"
@@ -101,7 +101,7 @@ show_progress() {
 quick_cleanup() {
     clear
     center_box "$box_width" "╔══════════════════════════════════════════════════════════════╗"
-    center_box "$box_width" "║                  QUICK SYSTEM CLEANUP                       ║"
+    center_box "$box_width" "║                  QUICK SYSTEM CLEANUP                        ║"
     center_box "$box_width" "╚══════════════════════════════════════════════════════════════╝"
     echo
     
@@ -169,7 +169,7 @@ quick_cleanup() {
 manage_package_cache() {
     clear
     center_box "$box_width" "╔══════════════════════════════════════════════════════════════╗"
-    center_box "$box_width" "║                PACKAGE CACHE MANAGEMENT                     ║"
+    center_box "$box_width" "║                PACKAGE CACHE MANAGEMENT                      ║"
     center_box "$box_width" "╚══════════════════════════════════════════════════════════════╝"
     echo
     
@@ -237,7 +237,7 @@ manage_package_cache() {
 remove_orphans() {
     clear
     center_box "$box_width" "╔══════════════════════════════════════════════════════════════╗"
-    center_box "$box_width" "║                ORPHANED PACKAGES REMOVAL                    ║"
+    center_box "$box_width" "║                ORPHANED PACKAGES REMOVAL                     ║"
     center_box "$box_width" "╚══════════════════════════════════════════════════════════════╝"
     echo
     
@@ -297,7 +297,7 @@ remove_orphans() {
 cleanup_logs() {
     clear
     center_box "$box_width" "╔══════════════════════════════════════════════════════════════╗"
-    center_box "$box_width" "║                   LOG FILES CLEANUP                         ║"
+    center_box "$box_width" "║                   LOG FILES CLEANUP                          ║"
     center_box "$box_width" "╚══════════════════════════════════════════════════════════════╝"
     echo
     
@@ -357,7 +357,7 @@ cleanup_logs() {
 analyze_disk_usage() {
     clear
     center_box "$box_width" "╔══════════════════════════════════════════════════════════════╗"
-    center_box "$box_width" "║                  DISK USAGE ANALYSIS                        ║"
+    center_box "$box_width" "║                  DISK USAGE ANALYSIS                         ║"
     center_box "$box_width" "╚══════════════════════════════════════════════════════════════╝"
     echo
     
@@ -418,7 +418,7 @@ analyze_disk_usage() {
 system_health_check() {
     clear
     center_box "$box_width" "╔══════════════════════════════════════════════════════════════╗"
-    center_box "$box_width" "║                  SYSTEM HEALTH CHECK                        ║"
+    center_box "$box_width" "║                  SYSTEM HEALTH CHECK                         ║"
     center_box "$box_width" "╚══════════════════════════════════════════════════════════════╝"
     echo
     
@@ -496,7 +496,7 @@ system_health_check() {
 complete_maintenance() {
     clear
     center_box "$box_width" "╔══════════════════════════════════════════════════════════════╗"
-    center_box "$box_width" "║              COMPLETE SYSTEM MAINTENANCE                    ║"
+    center_box "$box_width" "║              COMPLETE SYSTEM MAINTENANCE                     ║"
     center_box "$box_width" "╚══════════════════════════════════════════════════════════════╝"
     echo
     
