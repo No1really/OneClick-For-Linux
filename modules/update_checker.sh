@@ -27,13 +27,13 @@ check_update_lines=(
 
 result_lines_ok=(
     "╔══════════════════════════════════════════════════════════════╗"
-    "║           Your system is fully up to date! 🟡🍒             ║"
+    "║           Your system is fully up to date! 🟡🍒              ║"
     "╚══════════════════════════════════════════════════════════════╝"
 )
 
 result_lines_updates=(
     "╔══════════════════════════════════════════════════════════════╗"
-    "║         Updates available! Chomp those packets! 👻          ║"
+    "║         Updates available! Chomp those packets! 👻           ║"
     "╚══════════════════════════════════════════════════════════════╝"
 )
 
