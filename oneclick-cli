@@ -3,7 +3,7 @@
 # =====================================================================
 # 🟡 ONECLICK CLI: PAC-MAN ARCADE EDITION 🟡
 # "Chomp. Power-up. Optimize. Your entire Arch system!"
-# OCD Arch User (Kolkata, India)
+# No1Really
 # =====================================================================
 
 # Script directory and module path
@@ -71,16 +71,16 @@ help_lines=(
     "║ Usage: ./oneclick-cli [OPTION]                               ║"
     "║                                                              ║"
     "║ Options:                                                     ║"
-    "║   -c, --check      Check for updates                        ║"
-    "║   -u, --update     Quick system update                      ║"
-    "║   -s, --shell      Shell configuration                      ║"
-    "║   -t, --tune       System configuration                     ║"
-    "║   -p, --pacman     Pacman animation                         ║"
-    "║   -m, --maintain   System maintenance                       ║"
-    "║   -h, --help       Show this help                           ║"
-    "║   -v, --version    Show version info                        ║"
-    "║                                                             ║"
-    "║ Interactive: Run without flags for menu                     ║"
+    "║   -c, --check      Check for updates                         ║"
+    "║   -u, --update     Quick system update                       ║"
+    "║   -s, --shell      Shell configuration                       ║"
+    "║   -t, --tune       System configuration                      ║"
+    "║   -p, --pacman     Pacman animation                          ║"
+    "║   -m, --maintain   System maintenance                        ║"
+    "║   -h, --help       Show this help                            ║"
+    "║   -v, --version    Show version info                         ║"
+    "║                                                              ║"
+    "║ Interactive: Run without flags for menu                      ║"
     "║                                                              ║"
     "╚══════════════════════════════════════════════════════════════╝"
 )
@@ -90,13 +90,14 @@ version_lines=(
     "║           🟡 ONECLICK CLI VERSION INFO 🟡                    ║"
     "╠══════════════════════════════════════════════════════════════╣"
     "║                                                              ║"
-    "║ Version: 2.0 - Pac-Man Arcade Edition                       ║"
-    "║ Author:  OCD Arch User (Kolkata, India)                     ║"
+    "║ Version: 1.2 Modular Maestro Edition                         ║"
+    "║ Author:  No1Really                                           ║"
     "║ License: MIT                                                 ║"
-    "║ System:  Arch Linux Optimizer Suite                         ║"
     "║                                                              ║"
-    "║ Modules: Update Checker, System Updater, Shell Config,      ║"
-    "║          System Config, Pacman Animation, Maintenance       ║"
+    "║ System:  Arch Linux Optimizer Suite                          ║"
+    "║                                                              ║"
+    "║ Modules: Update Checker, System Updater, Shell Config,       ║"
+    "║          System Config, Pacman Animation, Maintenance        ║"
     "║                                                              ║"
     "╚══════════════════════════════════════════════════════════════╝"
 )
