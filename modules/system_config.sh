@@ -2,7 +2,7 @@
 
 # ============== OneClick System Configuration Module ==============
 # Pac-Man themed system configuration with consistent styling
-# Author: OCD Arch User (Kolkata, India)
+# Author: No1Really
 
 # Box styling configuration
 box_width=66
