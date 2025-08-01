@@ -1,4 +1,4 @@
-# 🟡 OneClick CLI — Pac-Man Arcade Editionfor tinkerers -  for speed demons -  for system rebels
+# 🟡 OneClick CLI — For Tinkerers - Speed Demons - System Rebels
 
 
   
