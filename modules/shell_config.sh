@@ -2,7 +2,7 @@
 
 # ============== OneClick Shell Configuration Module ==============
 # Pac-Man themed shell configuration with consistent styling
-# Author: OCD Arch User (Kolkata, India)
+# Author: No1Really
 
 # Box styling configuration
 box_width=66
