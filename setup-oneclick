@@ -1,0 +1,651 @@
+#!/usr/bin/env bash
+
+# =====================================================================
+# 🟡 ONECLICK CLI SETUP SCRIPT 🟡
+# Setup and Installation for OneClick CLI System
+# No1Really
+# =====================================================================
+
+# Colors and styling
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
+PURPLE='\033[0;35m'
+CYAN='\033[0;36m'
+NC='\033[0m' # No Color
+
+# Box styling
+box_width=66
+
+# Center text function
+center_box() {
+    local w=$1; shift
+    local termw=$(tput cols 2>/dev/null || echo 80)
+    local left=$(( (termw - w) / 2 ))
+    [[ $left -lt 0 ]] && left=0
+    for line in "$@"; do
+        printf "%*s%s\n" "$left" "" "$line"
+    done
+}
+
+# Print with colors
+print_status() {
+    echo -e "${GREEN}[✓]${NC} $1"
+}
+
+print_error() {
+    echo -e "${RED}[✗]${NC} $1"
+}
+
+print_info() {
+    echo -e "${BLUE}[ℹ]${NC} $1"
+}
+
+print_warning() {
+    echo -e "${YELLOW}[⚠]${NC} $1"
+}
+
+# Installation banner
+show_banner() {
+    clear
+    echo -e "${YELLOW}"
+    center_box "$box_width" "╔══════════════════════════════════════════════════════════════╗"
+    center_box "$box_width" "║                                                              ║"
+    center_box "$box_width" "║           🟡 OneClick CLI Setup & Installation 🟡            ║"
+    center_box "$box_width" "║                                                              ║"
+    center_box "$box_width" "║               Pac-Man Edition System Installer               ║"
+    center_box "$box_width" "║                                                              ║"
+    center_box "$box_width" "╚══════════════════════════════════════════════════════════════╝"
+    echo -e "${NC}"
+    echo
+}
+
+# Check prerequisites
+check_prerequisites() {
+    print_info "Checking system prerequisites..."
+    
+    # Check if running on Arch-based system
+    if ! command -v pacman &>/dev/null; then
+        print_warning "This system appears optimized for Arch Linux, but will work on other distributions too."
+    else
+        print_status "Arch Linux detected - full functionality available"
+    fi
+    
+    # Check for bash
+    if ! command -v bash &>/dev/null; then
+        print_error "Bash shell not found! This is required."
+        return 1
+    else
+        print_status "Bash shell found"
+    fi
+    
+    return 0
+}
+
+# Create directory structure
+create_structure() {
+    local install_dir="$1"
+    
+    print_info "Creating directory structure..."
+    
+    # Create main directory
+    if mkdir -p "$install_dir"; then
+        print_status "Created main directory: $install_dir"
+    else
+        print_error "Failed to create directory: $install_dir"
+        return 1
+    fi
+    
+    # Create modules directory
+    if mkdir -p "$install_dir/modules"; then
+        print_status "Created modules directory: $install_dir/modules"
+    else
+        print_error "Failed to create modules directory"
+        return 1
+    fi
+    
+    return 0
+}
+
+# Install files
+install_files() {
+    local install_dir="$1"
+    local current_dir="$(pwd)"
+    
+    print_info "Installing OneClick CLI files..."
+    
+    # Copy main script
+    if [[ -f "$current_dir/oneclick-cli" ]]; then
+        if cp "$current_dir/oneclick-cli" "$install_dir/"; then
+            chmod +x "$install_dir/oneclick-cli"
+            print_status "Installed main script: oneclick-cli"
+        else
+            print_error "Failed to copy main script"
+            return 1
+        fi
+    else
+        print_error "Main script 'oneclick-cli' not found in current directory"
+        return 1
+    fi
+    
+    # Copy modules
+    local modules_found=0
+    if [[ -d "$current_dir/modules" ]]; then
+        for module in "$current_dir/modules"/*.sh; do
+            if [[ -f "$module" ]]; then
+                local module_name=$(basename "$module")
+                if cp "$module" "$install_dir/modules/"; then
+                    chmod +x "$install_dir/modules/$module_name"
+                    print_status "Installed module: $module_name"
+                    ((modules_found++))
+                else
+                    print_error "Failed to copy module: $module_name"
+                fi
+            fi
+        done
+    fi
+    
+    if [[ $modules_found -eq 0 ]]; then
+        print_warning "No modules found in ./modules/ directory"
+        print_info "Creating basic modules..."
+        create_minimal_modules "$install_dir"
+    else
+        print_status "Installed $modules_found modules"
+    fi
+    
+    return 0
+}
+
+# **ENHANCED: Add comprehensive shell aliases for OneClick CLI**
+add_to_path_and_aliases() {
+    local install_dir="$1"
+    
+    print_info "Adding OneClick CLI to system PATH and creating aliases..."
+    
+    # Determine shell config files
+    local shell_configs=()
+    local detected_shells=()
+    
+    # Check for Bash
+    if [[ -f "$HOME/.bashrc" ]] || [[ "$SHELL" == *"bash"* ]]; then
+        shell_configs+=("$HOME/.bashrc")
+        detected_shells+=("bash")
+    fi
+    
+    # Check for Zsh
+    if [[ -f "$HOME/.zshrc" ]] || [[ "$SHELL" == *"zsh"* ]]; then
+        shell_configs+=("$HOME/.zshrc")
+        detected_shells+=("zsh")
+    fi
+    
+    # Check for Fish
+    if [[ -d "$HOME/.config/fish" ]] || [[ "$SHELL" == *"fish"* ]]; then
+        mkdir -p "$HOME/.config/fish"
+        shell_configs+=("$HOME/.config/fish/config.fish")
+        detected_shells+=("fish")
+    fi
+    
+    # Fallback to .profile if no specific shell detected
+    if [[ ${#shell_configs[@]} -eq 0 ]]; then
+        shell_configs+=("$HOME/.profile")
+        detected_shells+=("profile")
+    fi
+    
+    print_info "Detected shells: ${detected_shells[*]}"
+    
+    # Process each shell configuration
+    for i in "${!shell_configs[@]}"; do
+        local shell_config="${shell_configs[$i]}"
+        local shell_name="${detected_shells[$i]}"
+        
+        print_info "Configuring $shell_name: $shell_config"
+        
+        # Create backup
+        if [[ -f "$shell_config" ]]; then
+            cp "$shell_config" "${shell_config}.backup.$(date +%s)"
+            print_status "Created backup: ${shell_config}.backup.$(date +%s)"
+            
+            # Remove old OneClick entries
+            sed -i '/# OneClick CLI/d' "$shell_config"
+            sed -i '/OneClick CLI Configuration/d' "$shell_config"
+            sed -i '/oneclick-cli/d' "$shell_config"
+            sed -i '/waka-waka/d' "$shell_config"
+            sed -i '/power-pellet/d' "$shell_config"
+        fi
+        
+        # Add configuration based on shell type
+        if [[ "$shell_name" == "fish" ]]; then
+            # Fish shell syntax
+            cat >> "$shell_config" << EOF
+
+# ==================================================
+# OneClick CLI Configuration - Pac-Man Edition (Fish)
+# ==================================================
+
+# Add OneClick CLI to PATH
+set -gx PATH "$install_dir" \$PATH
+
+# OneClick CLI Aliases (Fish syntax)
+alias oneclick '$install_dir/oneclick-cli'
+alias pacman-cli '$install_dir/oneclick-cli'
+alias oc '$install_dir/oneclick-cli'
+
+# Quick command aliases
+alias oc-check '$install_dir/oneclick-cli --check'
+alias oc-update '$install_dir/oneclick-cli --update'
+alias oc-shell '$install_dir/oneclick-cli --shell'
+alias oc-tune '$install_dir/oneclick-cli --tune'
+alias oc-pacman '$install_dir/oneclick-cli --pacman'
+alias oc-maintain '$install_dir/oneclick-cli --maintain'
+
+# Module direct access
+alias check-updates '$install_dir/modules/update_checker.sh menu'
+alias system-update '$install_dir/modules/system_updater.sh menu'
+alias shell-config '$install_dir/modules/shell_config.sh menu'
+alias system-config '$install_dir/modules/system_config.sh menu'
+alias pacman-game '$install_dir/modules/pacman_animation.sh menu'
+alias system-maintain '$install_dir/modules/maintenance.sh menu'
+
+# Pac-Man themed aliases
+alias waka-waka '$install_dir/oneclick-cli'
+alias chomp '$install_dir/oneclick-cli --update'
+alias power-pellet '$install_dir/oneclick-cli --maintain'
+
+# Fun OneClick aliases
+alias pellet-hunt '$install_dir/oneclick-cli --check'
+alias ghost-buster '$install_dir/oneclick-cli --maintain'
+alias arcade '$install_dir/oneclick-cli'
+alias game-over 'echo "👻 GAME OVER! Use oneclick-cli to continue 🟡"'
+
+# Utility functions
+function oc-help
+    echo "🟡 OneClick CLI - Available Commands:"
+    echo "  oneclick-cli     - Main menu"
+    echo "  oc-check        - Check updates"
+    echo "  oc-update       - System update"
+    echo "  oc-shell        - Shell config"
+    echo "  oc-maintain     - Maintenance"
+    echo "  waka-waka       - Main menu (fun)"
+    echo "  chomp           - Quick update"
+    echo "  power-pellet    - Maintenance"
+end
+
+# ==================================================
+EOF
+        else
+            # Bash/Zsh syntax
+            cat >> "$shell_config" << EOF
+
+# ==================================================
+# OneClick CLI Configuration - Pac-Man Edition ($shell_name)
+# ==================================================
+
+# Add OneClick CLI to PATH
+export PATH="$install_dir:\$PATH"
+
+# OneClick CLI Aliases
+alias oneclick='$install_dir/oneclick-cli'
+alias pacman-cli='$install_dir/oneclick-cli'
+alias oc='$install_dir/oneclick-cli'
+
+# Quick command aliases
+alias oc-check='$install_dir/oneclick-cli --check'
+alias oc-update='$install_dir/oneclick-cli --update'
+alias oc-shell='$install_dir/oneclick-cli --shell'
+alias oc-tune='$install_dir/oneclick-cli --tune'
+alias oc-pacman='$install_dir/oneclick-cli --pacman'
+alias oc-maintain='$install_dir/oneclick-cli --maintain'
+
+# Module direct access
+alias check-updates='$install_dir/modules/update_checker.sh menu'
+alias system-update='$install_dir/modules/system_updater.sh menu'
+alias shell-config='$install_dir/modules/shell_config.sh menu'
+alias system-config='$install_dir/modules/system_config.sh menu'
+alias pacman-game='$install_dir/modules/pacman_animation.sh menu'
+alias system-maintain='$install_dir/modules/maintenance.sh menu'
+
+# Pac-Man themed aliases
+alias waka-waka='$install_dir/oneclick-cli'
+alias chomp='$install_dir/oneclick-cli --update'
+alias power-pellet='$install_dir/oneclick-cli --maintain'
+
+# Fun OneClick aliases
+alias pellet-hunt='$install_dir/oneclick-cli --check'
+alias ghost-buster='$install_dir/oneclick-cli --maintain'
+alias arcade='$install_dir/oneclick-cli'
+alias game-over='echo "👻 GAME OVER! Use oneclick-cli to continue 🟡"'
+
+# Utility functions
+oc-help() {
+    echo "🟡 OneClick CLI - Available Commands:"
+    echo "  oneclick-cli     - Main menu"
+    echo "  oc-check        - Check updates"
+    echo "  oc-update       - System update"
+    echo "  oc-shell        - Shell config"
+    echo "  oc-maintain     - Maintenance"
+    echo "  waka-waka       - Main menu (fun)"
+    echo "  chomp           - Quick update"
+    echo "  power-pellet    - Maintenance"
+}
+
+# Welcome message function
+oc-welcome() {
+    echo "🟡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━🟡"
+    echo "         ONECLICK CLI - PAC-MAN EDITION"
+    echo "           System Management Arcade"
+    echo "🟡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━🟡"
+    echo
+    echo "🍒 Quick Commands:"
+    echo "  oc          - Main menu"
+    echo "  oc-update   - System update"
+    echo "  oc-maintain - System cleanup"
+    echo "  waka-waka   - Let's play!"
+    echo
+    echo "Type 'oc-help' for full command list"
+}
+
+# ==================================================
+EOF
+        fi
+        
+        print_status "Added OneClick CLI configuration to $shell_config"
+    done
+    
+    # Create system-wide symbolic link if possible
+    if [[ -w "/usr/local/bin" ]] && [[ -d "/usr/local/bin" ]]; then
+        if ln -sf "$install_dir/oneclick-cli" "/usr/local/bin/oneclick-cli" 2>/dev/null; then
+            print_status "Created system-wide symbolic link in /usr/local/bin"
+        fi
+    fi
+    
+    # Create desktop entry if DE is detected
+    if [[ -n "$XDG_CURRENT_DESKTOP" ]] && [[ -d "$HOME/.local/share/applications" ]]; then
+        create_desktop_entry "$install_dir"
+    fi
+}
+
+# Create desktop entry
+create_desktop_entry() {
+    local install_dir="$1"
+    local desktop_file="$HOME/.local/share/applications/oneclick-cli.desktop"
+    
+    print_info "Creating desktop entry..."
+    
+    cat > "$desktop_file" << EOF
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=OneClick CLI
+Comment=Pac-Man Edition System Manager
+Exec=$install_dir/oneclick-cli
+Icon=utilities-terminal
+Terminal=true
+Categories=System;Settings;
+Keywords=pacman;arch;linux;system;update;maintenance;oneclick;
+EOF
+
+    chmod +x "$desktop_file"
+    print_status "Created desktop entry: $desktop_file"
+}
+
+# Create minimal modules if missing
+create_minimal_modules() {
+    local install_dir="$1"
+    
+    print_info "Creating basic module structure..."
+    
+    # Array of modules to create
+    local modules=(
+        "update_checker:SYSTEM UPDATE CHECKER:🔍"
+        "system_updater:SYSTEM UPDATER:🔄"
+        "shell_config:SHELL CONFIGURATION:🐚"
+        "system_config:SYSTEM CONFIGURATION:⚙️"
+        "pacman_animation:PAC-MAN GAME:🟡"
+        "maintenance:SYSTEM MAINTENANCE:🧹"
+    )
+
+    for module_info in "${modules[@]}"; do
+        IFS=':' read -r module_name module_title module_icon <<< "$module_info"
+        
+        if [[ ! -f "$install_dir/modules/${module_name}.sh" ]]; then
+            cat > "$install_dir/modules/${module_name}.sh" << EOF
+#!/usr/bin/env bash
+
+# ============== OneClick ${module_title} Module ==============
+# Pac-Man themed ${module_name} with consistent styling
+# Author: No1Really
+
+box_width=66
+
+center_box() {
+    local w=\$1; shift
+    local termw=\$(tput cols 2>/dev/null || echo 80)
+    local left=\$(( (termw - w) / 2 ))
+    [[ \$left -lt 0 ]] && left=0
+    for line in "\$@"; do
+        printf "%*s%s\\n" "\$left" "" "\$line"
+    done
+}
+
+${module_name}_main() {
+    clear
+    center_box "\$box_width" "╔══════════════════════════════════════════════════════════════╗"
+    center_box "\$box_width" "║         ${module_icon} ${module_title} ${module_icon}        ║"
+    center_box "\$box_width" "╚══════════════════════════════════════════════════════════════╝"
+    echo
+    
+    center_box "\$box_width" "🟡 ${module_name^} module is running! 🟡"
+    center_box "\$box_width" "This is a basic implementation - customize as needed."
+    echo
+    
+    # Add specific functionality based on module
+    case "${module_name}" in
+        "update_checker")
+            center_box "\$box_width" "Checking for system updates..."
+            if command -v checkupdates &>/dev/null; then
+                local updates=\$(checkupdates 2>/dev/null | wc -l)
+                if [[ "\$updates" -eq 0 ]]; then
+                    center_box "\$box_width" "✅ System is up to date! 🟡"
+                else
+                    center_box "\$box_width" "📦 \$updates updates available! 👻"
+                fi
+            else
+                center_box "\$box_width" "⚠️ checkupdates not available"
+            fi
+            ;;
+        "system_updater")
+            if command -v pacman &>/dev/null; then
+                center_box "\$box_width" "Run system update? [Y/n]:"
+                read -n 1 -s confirm
+                if [[ "\${confirm,,}" != "n" ]]; then
+                    echo
+                    center_box "\$box_width" "Running: sudo pacman -Syu"
+                    sudo pacman -Syu
+                fi
+            else
+                center_box "\$box_width" "Please run your system's update command manually"
+            fi
+            ;;
+        "pacman_animation")
+            center_box "\$box_width" "🟡 WAKA-WAKA-WAKA! 🟡"
+            center_box "\$box_width" " ᗧ . . . 🍒 . . . 👻 "
+            center_box "\$box_width" "Chomp chomp chomp!"
+            ;;
+        *)
+            center_box "\$box_width" "Module functionality coming soon..."
+            ;;
+    esac
+    
+    echo
+    center_box "\$box_width" "Press any key to return..."
+    read -n 1 -s
+}
+
+# Handle execution modes
+case "\$1" in
+    "menu"|"") ${module_name}_main ;;
+    "quick") ${module_name}_main ;;
+    *) echo "${module_title} Module - Usage: \$0 [menu|quick]" ;;
+esac
+EOF
+
+            chmod +x "$install_dir/modules/${module_name}.sh"
+            print_status "Created ${module_name} module"
+        fi
+    done
+}
+
+# Test installation
+test_installation() {
+    local install_dir="$1"
+    
+    print_info "Testing installation..."
+    
+    # Test main script
+    if [[ -x "$install_dir/oneclick-cli" ]]; then
+        print_status "Main script is executable"
+    else
+        print_error "Main script is not executable"
+        return 1
+    fi
+    
+    # Test modules
+    local modules_ok=0
+    local modules_total=0
+    
+    for module in "$install_dir/modules"/*.sh; do
+        if [[ -f "$module" ]]; then
+            ((modules_total++))
+            if [[ -x "$module" ]]; then
+                ((modules_ok++))
+            fi
+        fi
+    done
+    
+    print_status "$modules_ok of $modules_total modules are executable"
+    return 0
+}
+
+# Show completion message with comprehensive alias information
+show_completion() {
+    local install_dir="$1"
+    
+    echo
+    echo -e "${GREEN}"
+    center_box "$box_width" "╔══════════════════════════════════════════════════════════════╗"
+    center_box "$box_width" "║                                                              ║"
+    center_box "$box_width" "║           🎉 INSTALLATION COMPLETED SUCCESSFULLY! 🎉         ║"
+    center_box "$box_width" "║                                                              ║"
+    center_box "$box_width" "╚══════════════════════════════════════════════════════════════╝"
+    echo -e "${NC}"
+    echo
+    
+    print_status "OneClick CLI installed to: $install_dir"
+    echo
+    
+    echo -e "${CYAN}🎮 AVAILABLE COMMANDS AFTER RESTART:${NC}"
+    echo
+    echo -e " ${YELLOW}Main Commands:${NC}"
+    echo -e "   oneclick-cli       # Full interactive menu"
+    echo -e "   oneclick           # Alias for oneclick-cli"
+    echo -e "   oc                 # Short alias"
+    echo -e "   arcade             # Fun alias"
+    echo
+    echo -e " ${YELLOW}Quick Commands:${NC}"
+    echo -e "   oc-check           # Check for updates"
+    echo -e "   oc-update          # Quick system update"
+    echo -e "   oc-shell           # Shell configuration"
+    echo -e "   oc-tune            # System tuning"
+    echo -e "   oc-pacman          # Pac-Man game"
+    echo -e "   oc-maintain        # System maintenance"
+    echo
+    echo -e " ${YELLOW}Pac-Man Themed Commands:${NC}"
+    echo -e "   waka-waka          # Main menu (fun version)"
+    echo -e "   chomp              # Quick system update"
+    echo -e "   power-pellet       # System maintenance"
+    echo -e "   pellet-hunt        # Check for updates"
+    echo -e "   ghost-buster       # System cleanup"
+    echo
+    echo -e " ${YELLOW}Direct Module Access:${NC}"
+    echo -e "   check-updates      # Update checker module"
+    echo -e "   system-update      # System updater module"
+    echo -e "   shell-config       # Shell configuration module"
+    echo -e "   system-config      # System configuration module"
+    echo -e "   pacman-game        # Pac-Man animation game"
+    echo -e "   system-maintain    # Maintenance module"
+    echo
+    echo -e " ${YELLOW}Help & Utility:${NC}"
+    echo -e "   oc-help            # Show command list"
+    echo -e "   oc-welcome         # Show welcome message"
+    echo -e "   game-over          # Fun message"
+    echo
+    echo -e "${PURPLE}🚀 TO GET STARTED:${NC}"
+    echo
+    echo -e " ${CYAN}1. Restart your terminal OR run:${NC}"
+    echo -e "    source ~/.bashrc ${PURPLE}# (for Bash)${NC}"
+    echo -e "    source ~/.zshrc  ${PURPLE}# (for Zsh)${NC}"
+    echo -e "    # (Fish will auto-load)${PURPLE}"
+    echo
+    echo -e " ${CYAN}2. Run any of the commands above, or:${NC}"
+    echo -e "    oneclick-cli"
+    echo -e "    waka-waka"
+    echo
+    echo -e " ${CYAN}3. Or run directly without restart:${NC}"
+    echo -e "    $install_dir/oneclick-cli"
+    echo
+    echo -e " ${CYAN}4. Get help anytime:${NC}"
+    echo -e "    oc-help"
+    echo -e "    oc-welcome"
+    echo
+    
+    print_info "All aliases and PATH configurations have been set up!"
+    print_info "Cross-shell compatibility: Bash, Zsh, and Fish supported!"
+    print_info "Enjoy chomping through system optimization! 🟡👻🍒"
+}
+
+# Main installation function
+main() {
+    show_banner
+    
+    # Set installation directory
+    local install_dir="$HOME/OneClick"
+    
+    print_info "OneClick CLI will be installed to: $install_dir"
+    echo
+    
+    # Ask for confirmation
+    echo -n "Continue with installation? [Y/n]: "
+    read -r response
+    if [[ "${response,,}" == "n" ]]; then
+        print_info "Installation cancelled by user"
+        exit 0
+    fi
+    
+    echo
+    
+    # Run installation steps
+    if ! check_prerequisites; then
+        exit 1
+    fi
+    
+    if ! create_structure "$install_dir"; then
+        exit 1
+    fi
+    
+    if ! install_files "$install_dir"; then
+        exit 1
+    fi
+    
+    add_to_path_and_aliases "$install_dir"
+    
+    if ! test_installation "$install_dir"; then
+        print_warning "Installation completed with some issues"
+    fi
+    
+    show_completion "$install_dir"
+}
+
+# Run main function
+main "$@"
+

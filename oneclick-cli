@@ -1,0 +1,239 @@
+#!/usr/bin/env bash
+
+# =====================================================================
+# 🟡 ONECLICK CLI v1.0: PAC-MAN ARCADE EDITION 🟡
+# "Chomp. Power-up. Optimize. Your entire system!"
+# OneClick CLI - Complete System Management Suite
+# =====================================================================
+
+VERSION="1.0"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+MODULE_DIR="$SCRIPT_DIR/modules"
+
+# Box styling configuration
+box_width=66
+
+# Center text function - STANDARDIZED
+center_box() {
+    local w=$1; shift
+    local termw=$(tput cols 2>/dev/null || echo 80)
+    local left=$(( (termw - w) / 2 ))
+    [[ $left -lt 0 ]] && left=0
+    for line in "$@"; do
+        printf "%*s%s\n" "$left" "" "$line"
+    done
+}
+
+# Pac-Man themed UI Components
+banner_lines=(
+    "╔══════════════════════════════════════════════════════════════╗"
+    "║                                                              ║"
+    "║            🟡 OneClick CLI v1.0: Pac-Man Edition 🟡          ║"
+    "║                Complete System Management Suite              ║"
+    "║                                                              ║"
+    "╚══════════════════════════════════════════════════════════════╝"
+)
+
+mascot_lines=(
+    "╔══════════════════════════════════════════════════════════════╗"
+    "║                                                              ║"
+    "║                    ᗧ . . . 🍒 . . . 👻                       ║"
+    "║                      WAKA-WAKA-WAKA!                         ║"
+    "║                                                              ║"
+    "╚══════════════════════════════════════════════════════════════╝"
+)
+
+menu_lines=(
+    "╔══════════════════════════════════════════════════════════════╗"
+    "║                           MAIN MENU                          ║"
+    "╠══════════════════════════════════════════════════════════════╣"
+    "║                                                              ║"
+    "║        🟡 1. Check for Updates (Pellet Hunt) 🍒              ║"
+    "║                                                              ║"
+    "║        🟡 2. Update Your System (Power Pellet) 🟡            ║"
+    "║                                                              ║"
+    "║        👻 3. Shell Power-Up Configuration 🍒                 ║"
+    "║                                                              ║"
+    "║        👻 4. System Tune & Configuration 🟡                  ║"
+    "║                                                              ║"
+    "║        🟡 5. Play Pac-Man Arcade Game 👻                     ║"
+    "║                                                              ║"
+    "║        🟡 6. System Maintenance & Cleanup 🍒                 ║"
+    "║                                                              ║"
+    "║        🍒 7. Exit Game 🟡                                    ║"
+    "║                                                              ║"
+    "╚══════════════════════════════════════════════════════════════╝"
+)
+
+# Execute module function - ENHANCED
+execute_module() {
+    local module_name="$1"
+    local function_name="$2"
+    local module_path="$MODULE_DIR/${module_name}.sh"
+    
+    if [[ -f "$module_path" ]]; then
+        # Show loading animation
+        show_loading_animation "$module_name"
+        
+        # Execute module
+        bash "$module_path" "$function_name"
+        local exit_code=$?
+        
+        # Show return animation if not successful
+        if [[ $exit_code -ne 0 ]]; then
+            center_box "$box_width" "⚠️ Module encountered an issue. Press any key to continue..."
+            read -n 1 -s
+        fi
+        
+        return $exit_code
+    else
+        center_box "$box_width" "❌ Error: Module '$module_name' not found!"
+        center_box "$box_width" "Expected location: $module_path"
+        echo
+        center_box "$box_width" "Press any key to continue..."
+        read -n 1 -s
+        return 1
+    fi
+}
+
+# Show loading animation
+show_loading_animation() {
+    local module_name="$1"
+    local frames=("🟡" "🔶" "🟠" "🔸")
+    
+    clear
+    center_box "$box_width" "Loading $module_name module..."
+    echo
+    
+    for i in {1..8}; do
+        local frame=${frames[$((i % 4))]}
+        center_box "$box_width" "$frame Chomping through data..."
+        sleep 0.2
+        tput cup $(($(tput lines) / 2 + 1)) 0 2>/dev/null
+        tput el 2>/dev/null
+    done
+}
+
+# Show main menu
+show_main_menu() {
+    clear
+    center_box "$box_width" "${banner_lines[@]}"
+    echo
+    center_box "$box_width" "${mascot_lines[@]}"
+    echo
+    center_box "$box_width" "${menu_lines[@]}"
+    echo
+    
+    # System status line
+    local mem_usage=$(free 2>/dev/null | awk 'NR==2{printf "%.0f%%", $3/$2*100}' || echo "N/A")
+    local uptime_info=$(uptime -p 2>/dev/null | cut -d' ' -f2-4 || echo "N/A")
+    center_box "$box_width" "System: $(uname -r) | Memory: ${mem_usage} | Uptime: ${uptime_info}"
+    echo
+}
+
+# Handle menu choice
+handle_menu_choice() {
+    local choice="$1"
+    
+    case "$choice" in
+        1) execute_module "update_checker" "menu" ;;
+        2) execute_module "system_updater" "menu" ;;
+        3) execute_module "shell_config" "menu" ;;
+        4) execute_module "system_config" "menu" ;;
+        5) execute_module "pacman_animation" "menu" ;;
+        6) execute_module "maintenance" "menu" ;;
+        7)
+            clear
+            center_box "$box_width" "╔══════════════════════════════════════════════════════════════╗"
+            center_box "$box_width" "║                 Thanks for using OneClick CLI! 🟡            ║"
+            center_box "$box_width" "║                      WAKA-WAKA-WAKA! 👻🍒                    ║"
+            center_box "$box_width" "╚══════════════════════════════════════════════════════════════╝"
+            echo
+            exit 0
+            ;;
+        *)
+            center_box "$box_width" "❌ Invalid choice! Please select 1-7."
+            echo
+            center_box "$box_width" "Press any key to continue..."
+            read -n 1 -s
+            ;;
+    esac
+}
+
+# Show help
+show_help() {
+    clear
+    center_box "$box_width" "╔══════════════════════════════════════════════════════════════╗"
+    center_box "$box_width" "║                      🟡 ONECLICK CLI HELP 🟡                 ║"
+    center_box "$box_width" "╠══════════════════════════════════════════════════════════════╣"
+    center_box "$box_width" "║                                                              ║"
+    center_box "$box_width" "║  Usage: ./oneclick-cli [OPTION]                              ║"
+    center_box "$box_width" "║                                                              ║"
+    center_box "$box_width" "║  Options:                                                    ║"
+    center_box "$box_width" "║    -c, --check      Check for updates                        ║"
+    center_box "$box_width" "║    -u, --update     Quick system update                      ║"
+    center_box "$box_width" "║    -s, --shell      Shell configuration                      ║"
+    center_box "$box_width" "║    -t, --tune       System configuration                     ║"
+    center_box "$box_width" "║    -p, --pacman     Pacman animation game                    ║"
+    center_box "$box_width" "║    -m, --maintain   System maintenance                       ║"
+    center_box "$box_width" "║    -h, --help       Show this help                           ║"
+    center_box "$box_width" "║    -v, --version    Show version info                        ║"
+    center_box "$box_width" "║                                                              ║"
+    center_box "$box_width" "║  Interactive: Run without flags for menu                     ║"
+    center_box "$box_width" "║                                                              ║"
+    center_box "$box_width" "╚══════════════════════════════════════════════════════════════╝"
+    echo
+    exit 0
+}
+
+# Show version
+show_version() {
+    clear
+    center_box "$box_width" "╔══════════════════════════════════════════════════════════════╗"
+    center_box "$box_width" "║                🟡 ONECLICK CLI VERSION INFO 🟡               ║"
+    center_box "$box_width" "╠══════════════════════════════════════════════════════════════╣"
+    center_box "$box_width" "║                                                              ║"
+    center_box "$box_width" "║  Version: 1.0 Complete System Suite                          ║"
+    center_box "$box_width" "║  Theme: Pac-Man Arcade Edition                               ║"
+    center_box "$box_width" "║  License: MIT                                                ║"
+    center_box "$box_width" "║                                                              ║"
+    center_box "$box_width" "║  Target: Multi-Distribution Linux                            ║"
+    center_box "$box_width" "║  Optimized: Arch Linux                                       ║"
+    center_box "$box_width" "║                                                              ║"
+    center_box "$box_width" "║  Modules: Update Checker, System Updater, Shell Config,      ║"
+    center_box "$box_width" "║           System Config, Pacman Game, Maintenance            ║"
+    center_box "$box_width" "║                                                              ║"
+    center_box "$box_width" "╚══════════════════════════════════════════════════════════════╝"
+    echo
+    exit 0
+}
+
+# Main interactive loop
+interactive_mode() {
+    while true; do
+        show_main_menu
+        center_box "$box_width" "Make your move (1-7): "
+        read -n 1 -s choice
+        echo
+        handle_menu_choice "$choice"
+    done
+}
+
+# Parse command line arguments
+case "$1" in
+    -c|--check) execute_module "update_checker" "menu" ;;
+    -u|--update) execute_module "system_updater" "quick" ;;
+    -s|--shell) execute_module "shell_config" "menu" ;;
+    -t|--tune) execute_module "system_config" "menu" ;;
+    -p|--pacman) execute_module "pacman_animation" "menu" ;;
+    -m|--maintain) execute_module "maintenance" "menu" ;;
+    -h|--help) show_help ;;
+    -v|--version) show_version ;;
+    "") interactive_mode ;;
+    *)
+        echo "Unknown option: $1"
+        echo "Use --help for usage information"
+        exit 1
+        ;;
+esac
+
