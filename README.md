@@ -156,7 +156,6 @@ Yes! Tinker, remix, reskin—make Pac-Man disco or turn the ghosts into sysadmin
 ---
 
 <div align="center" style="margin-top:40px; font-size: 1.2em">
-
-❤️ Made with love by <b>No1Really</b>, for the whole community!
+Made with ❤️  by <b>No1Really</b>, for the whole community!
 </div>
 
