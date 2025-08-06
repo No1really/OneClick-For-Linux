@@ -38,11 +38,11 @@
 <summary><kbd>💥 See It in Action!</kbd></summary>
 <br>
 
-<p align="center">
-  <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExcWFpZWJnMHNxM2pzOTk5aGg2NjJjY2Z2c240ZHprMHlpcDN0M3ppdiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/HN4JACm508pPtI17ZY/giphy.gif" width="350" alt="Pac-Man Menu Action Animation">
-</p>
-
 *Chomp through system updates, maintenance, and more—while Pac-Man dances in the terminal!*
+
+
+https://github.com/user-attachments/assets/8218da2a-1b03-4040-aade-60614ad4c641
+
 
 </details>
 
