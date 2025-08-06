@@ -11,7 +11,7 @@
 
 # 🟡 OneClick For Linux
 
-> _Turn your shell into a retro joy machine. Chomp chores, play games, and blow your sysadmin mind—all in your terminal!_
+> _This CLI does crimes (but ergonomic, animated, dopamine-laced ones)._
 
 ---
 
