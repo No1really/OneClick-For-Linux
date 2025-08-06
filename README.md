@@ -4,6 +4,11 @@
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 -->
 
+<p align="center">
+  <img src="assets/oneclick-logo.png" alt="OneClick Logo" width="250"/>
+</p>
+
+
 # 🟡 OneClick For Linux
 
 > _Turn your shell into a retro joy machine. Chomp chores, play games, and blow your sysadmin mind—all in your terminal!_
